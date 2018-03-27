@@ -3,6 +3,7 @@
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.js'></script>
 <script src='vendor/three.js/examples/js/libs/stats.min.js'></script>
+<script src="vendor/three.js/STLLoader.js"></script>
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
 <script src='../vendor/jsartoolkit5/js/artoolkit.api.js'></script>
@@ -16,7 +17,10 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
-	<script>
+	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>AR.js</a> - developement playground
+	<br/>
+	Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@jerome_etienne</a>
+</div><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +123,7 @@
 
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
-	
+
 	
 	////////////////////////////////////////////////////////////////////////////////
 	//          Create a ArMarkerControls
@@ -132,7 +136,7 @@
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : THREEx.ArToolkitContext.baseURL + 'examples/marker-training/examples/pattern-files/pattern-marker.patt',
+		patternUrl : THREEx.ArToolkitContext.baseURL + 'examples/marker-training/examples/pattern-files/pattern-marker2.patt',
 	})
 
 
@@ -161,35 +165,43 @@
 	//		add an object in the scene
 	//////////////////////////////////////////////////////////////////////////////////
 
-	// var arWorldRoot = markerRoot
-	var arWorldRoot = smoothedRoot
-
 	var mesh = new THREE.AxisHelper()
 	// markerRoot.add(mesh)
-	arWorldRoot.add(mesh)
-
-	// add a torus knot
-	var geometry	= new THREE.CubeGeometry(1,1,1);
-	var material	= new THREE.MeshNormalMaterial({
-		transparent : true,
-		opacity: 0.5,
-		side: THREE.DoubleSide
-	})
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= geometry.parameters.height/2
-	// markerRoot.add( mesh );
-	arWorldRoot.add(mesh)
 	
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshNormalMaterial(); 
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= 0.5
+	// ASCII file
+	var loader = new THREE.STLLoader();
+	loader.load( 'cow.stl', function ( geometry ) {
+		var material = new THREE.MeshPhongMaterial( { color: 0xff5533, specular: 0x111111, shininess: 200 } );
+		var mesh = new THREE.Mesh( geometry, material );
+		// mesh.position.set( 0, - 0.25, 0.6 );
+		mesh.rotation.set( Math.PI/2,-Math.PI,Math.PI);
+		mesh.scale.set( 1, 1, 1 );
+		mesh.castShadow = true;
+		mesh.receiveShadow = true;
+		console.log(mesh);
+		// scene.add( mesh );
+		markerRoot.add( mesh );
+	});
+	// add a torus knot	
+	// var geometry	= new THREE.CubeGeometry(1,1,1);
+	// var material	= new THREE.MeshNormalMaterial({
+	// 	transparent : true,
+	// 	opacity: 0.5,
+	// 	side: THREE.DoubleSide
+	// }); 
+	// var mesh	= new THREE.Mesh( geometry, material );
+	// mesh.position.y	= geometry.parameters.height/2
 	// markerRoot.add( mesh );
-	arWorldRoot.add( mesh );
 	
+	// var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,32,32);
+	// var material	= new THREE.MeshNormalMaterial(); 
+	// var mesh	= new THREE.Mesh( geometry, material );
+	// mesh.position.y	= 0.5
+	// markerRoot.add( mesh );
 	onRenderFcts.push(function(delta){
 		mesh.rotation.x += delta * Math.PI
 	})
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
