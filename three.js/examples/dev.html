@@ -16,7 +16,10 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
-	<script>
+	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>AR.js</a> - developement playground
+	<br/>
+	Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@jerome_etienne</a>
+</div><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +122,7 @@
 
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
-	
+
 	
 	////////////////////////////////////////////////////////////////////////////////
 	//          Create a ArMarkerControls
@@ -163,9 +166,11 @@
 
 	// var arWorldRoot = markerRoot
 	var arWorldRoot = smoothedRoot
+
 	var mesh = new THREE.AxisHelper()
 	// markerRoot.add(mesh)
 	arWorldRoot.add(mesh)
+
 	// add a torus knot
 	var geometry	= new THREE.CubeGeometry(1,1,1);
 	var material	= new THREE.MeshNormalMaterial({
@@ -188,7 +193,6 @@
 	onRenderFcts.push(function(delta){
 		mesh.rotation.x += delta * Math.PI
 	})
-
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
