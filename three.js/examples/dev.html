@@ -164,16 +164,16 @@
 	// var arWorldRoot = markerRoot
 	//var arWorldRoot = smoothedRoot
 
-	//var mesh = new THREE.AxisHelper()
+	var mesh = new THREE.AxisHelper()
 	// markerRoot.add(mesh)
 	//arWorldRoot.add(mesh)
 	var loader = new THREE.JSONLoader():
 	loader.load('cow1.json',handle_load);
 		function handle_load(geometry, materials){
-			var material = new THREE.MEshNormalMaterial();
+			var material = new THREE.MeshNormalMaterial();
 			var mesh = new THREE.Mesh(geometry, materials);
 			scene.add(mesh);
-			mesh.position.z = -10
+			mesh.position.z = -10;
 		}
 	// add a torus knot
 	//var geometry	= new THREE.CubeGeometry(1,1,1);
@@ -194,9 +194,9 @@
 	// markerRoot.add( mesh );
 	//arWorldRoot.add( mesh );
 	
-	//onRenderFcts.push(function(delta){
-	//	mesh.rotation.x += delta * Math.PI
-	//})
+	onRenderFcts.push(function(delta){
+		mesh.rotation.x += delta * Math.PI
+	})
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
