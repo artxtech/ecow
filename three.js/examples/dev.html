@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<title>AR COW  - cow.dae</title>
+<title>AR COW  - cowcow.dae</title>
 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.js'></script>
@@ -176,7 +176,7 @@
 	// ASCII file
 	var loader = new THREE.ColladaLoader();
 	loader.options.convertUpAxis = true;
-	loader.load( './models/dae/cow.dae', function ( collada ) {
+	loader.load( './models/dae/cowcow.dae', function ( collada ) {
 		dae = collada.scene;
 		dae.traverse( function ( child ) {
 			if ( child instanceof THREE.SkinnedMesh ) {
@@ -184,7 +184,7 @@
 				animation.play();
 			}
 		} );
-		dae.scale.x = dae.scale.y = dae.scale.z = 0.001;
+		dae.scale.x = dae.scale.y = dae.scale.z = 1;
 		dae.rotation.set( 0,Math.PI/2,Math.PI/2);
 		markerRoot.add( dae );
 		onRenderFcts.push(function(delta){
