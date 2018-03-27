@@ -1,4 +1,4 @@
-<!DOCTYPE html><title>cowcowcow.dae</title>
+<!DOCTYPE html><title>cow1.dae</title>
 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.js'></script>
@@ -175,7 +175,7 @@
 	// ASCII file
 	var loader = new THREE.ColladaLoader();
 	loader.options.convertUpAxis = true;
-	loader.load( './models/dae/cowcowcow.dae', function ( collada ) {
+	loader.load( './models/dae/cow1.dae', function ( collada ) {
 		dae = collada.scene;
 		dae.traverse( function ( child ) {
 			if ( child instanceof THREE.SkinnedMesh ) {
