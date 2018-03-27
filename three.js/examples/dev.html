@@ -176,7 +176,7 @@
 	// ASCII file
 	var loader = new THREE.ColladaLoader();
 	loader.options.convertUpAxis = true;
-	loader.load( './models/dae/cube.dae', function ( collada ) {
+	loader.load( './models/dae/cowcowcow.dae', function ( collada ) {
 		dae = collada.scene;
 		dae.traverse( function ( child ) {
 			if ( child instanceof THREE.SkinnedMesh ) {
