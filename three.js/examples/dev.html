@@ -162,41 +162,33 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// var arWorldRoot = markerRoot
-	//var arWorldRoot = smoothedRoot
-
+	var arWorldRoot = smoothedRoot
 	var mesh = new THREE.AxisHelper()
 	// markerRoot.add(mesh)
-	//arWorldRoot.add(mesh)
-	var loader = new THREE.JSONLoader():
-	loader.load('cow1.json',handle_load);
-		function handle_load(geometry, materials){
-			var material = new THREE.MeshNormalMaterial();
-			var mesh = new THREE.Mesh(geometry, materials);
-			scene.add(mesh);
-			mesh.position.z = -10;
-		}
+	arWorldRoot.add(mesh)
 	// add a torus knot
-	//var geometry	= new THREE.CubeGeometry(1,1,1);
-	//var material	= new THREE.MeshNormalMaterial({
-	//	transparent : true,
-	//	opacity: 0.5,
-	//	side: THREE.DoubleSide
-	//})
-	//var mesh	= new THREE.Mesh( geometry, material );
-	//mesh.position.y	= geometry.parameters.height/2
+	var geometry	= new THREE.CubeGeometry(1,1,1);
+	var material	= new THREE.MeshNormalMaterial({
+		transparent : true,
+		opacity: 0.5,
+		side: THREE.DoubleSide
+	})
+	var mesh	= new THREE.Mesh( geometry, material );
+	mesh.position.y	= geometry.parameters.height/2
 	// markerRoot.add( mesh );
-	//arWorldRoot.add(mesh)
+	arWorldRoot.add(mesh)
 	
-	//var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	//var material	= new THREE.MeshNormalMaterial(); 
-	//var mesh	= new THREE.Mesh( geometry, material );
-	//mesh.position.y	= 0.5
+	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+	var material	= new THREE.MeshNormalMaterial(); 
+	var mesh	= new THREE.Mesh( geometry, material );
+	mesh.position.y	= 0.5
 	// markerRoot.add( mesh );
-	//arWorldRoot.add( mesh );
+	arWorldRoot.add( mesh );
 	
 	onRenderFcts.push(function(delta){
 		mesh.rotation.x += delta * Math.PI
 	})
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
